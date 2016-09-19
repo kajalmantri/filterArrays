@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<script>
+	
+/*var jsNames = ['Vinit', 'Harsimran', 'Fahim', 'PriyaJi', 'KannyJS', 'Kajal'],
+    counter = 0;
+
+for (counter; counter < jsNames.length; counter++) {
+    console.log(jsNames[counter]);
+}
+
+//Look at the Above Example and Try to Understand the Concept what I have done here.
+
+
+
+jsNames.forEach(function(name) {
+    console.log(name); // Que: why I use local parameter name?
+});*/
+/*var movieReleases = [{
+    "id": 65432445,
+    "title": "Titanic",
+    "boxart": "http://www.imdb.com/title/tt0120338/?ref_=fn_al_tt_1",
+    "uri": "http://api.imdb.com/catalog/titles/movies/70111470",
+    "rating": 4.0,
+    "bookmark": []
+}, {
+    "id": 654356453,
+    "title": "Avatar",
+    "boxart": "http://www.imdb.com/title/tt0499549/?ref_=tt_rec_tt",
+    "uri": "http://api.imdb.com/catalog/titles/movies/70111470",
+    "rating": 5.0,
+    "bookmark": [{ id: 432534, time: 65876586 }]
+}, {
+    "id": 70111470,
+    "title": "The Dark Knight",
+    "boxart": "http://www.imdb.com/title/tt0468569/?ref_=nv_sr_1",
+    "uri": "http://api.imdb.com/catalog/titles/movies/70111470",
+    "rating": 4.0,
+    "bookmark": []
+}, {
+    "id": 675465,
+    "title": "Iron Man",
+    "boxart": "http://www.imdb.com/title/tt0371746/?ref_=nv_sr_1",
+    "uri": "http://api.imdb.com/catalog/titles/movies/70111470",
+    "rating": 5.0,
+    "bookmark": [{ id: 432534, time: 65876586 }]
+}];
+
+var idBoxArt = [];
+
+movieReleases.forEach(function(movie) {
+    idBoxArt.push({ 
+    	id: movie.id,
+    	boxArt: movie. boxart
+    });
+});
+
+
+console.log(idBoxArt);
+*/
+
+Array.prototype.map = function map(passedFunction) {
+	var outPut = [];
+	var self = this; // what will be self || this here
+	self.forEach(function(element) {
+		outPut.push(passedFunction(element));
+
+	});
+
+	return outPut;
+};
+
+var arrayOne = [2,4,6];
+var newArrayOne = arrayOne.map(function(num){
+	return num * 2;
+});
+
+// please debug this code as much as possible and understand what is going on
+
+console.log(newArrayOne);
+//Ques 2
+Array.prototype.filter = function filter(passedFunction) {
+        var outPut = [];
+        var self = this;
+        // what will be self || this here
+        self.forEach(function(element) {
+            if (passedFunction(element)) {
+                outPut.push(element);
+            }
+        });
+        return outPut;
+    };
+
+    // for simple example
+
+    var filArray = [12,17, 18, 22, 25, 14, 27, 31];
+    var filterArray = filArray.filter(function(num){
+	   return num > 19;
+    });
+
+    console.log(filterArray);
+//QUES 3
+   var movieReleases = [{
+        "id": 65432445,
+        "title": "Titanic",
+        "boxart": "http://www.imdb.com/title/tt0120338/?ref_=fn_al_tt_1",
+        "uri": "http://api.imdb.com/catalog/titles/movies/70111470",
+        "rating": 4.0,
+        "bookmark": []
+    }, {
+        "id": 654356453,
+        "title": "Avatar",
+        "boxart": "http://www.imdb.com/title/tt0499549/?ref_=tt_rec_tt",
+        "uri": "http://api.imdb.com/catalog/titles/movies/70111470",
+        "rating": 5.0,
+        "bookmark": [{
+            id: 432534,
+            time: 65876586
+        }]
+    }, {
+        "id": 70111470,
+        "title": "The Dark Knight",
+        "boxart": "http://www.imdb.com/title/tt0468569/?ref_=nv_sr_1",
+        "uri": "http://api.imdb.com/catalog/titles/movies/70111470",
+        "rating": 4.0,
+        "bookmark": []
+    }, {
+        "id": 675465,
+        "title": "Iron Man",
+        "boxart": "http://www.imdb.com/title/tt0371746/?ref_=nv_sr_1",
+        "uri": "http://api.imdb.com/catalog/titles/movies/70111470",
+        "rating": 5.0,
+        "bookmark": [{
+            id: 432534,
+            time: 65876586
+        }]
+    }];
+    var ratingMovie = [];
+    // I want those movies whose rating is 4.0 in the new Array
+
+    movieReleases.forEach(function(movie){
+        if(movie.rating === 4.0){
+            ratingMovie.push(movie); // I am not happy with if/else
+        }(movie.rating === 4.0)
+        // must use ternary operator
+    });
+
+    console.log(ratingMovie);
+//Ques4
+Array.prototype.concatAll = function concatAll() {
+	var outPut = [];
+	var self = this;
+	self.forEach(function(subArray) {
+		outPut.push.apply(outPut, subArray);
+	});
+
+	return outPut;
+    };
+
+    var multiDimArray = [ [12,15,17], [2,4,6], [5,3,1] ];
+    var flatArray = multiDimArray.concatAll();
+
+    console.log(flatArray);
+//Ques 5
+var movieReleases = [{
+        category: "New Releases",
+        movies: [{
+            "id": 65432445,
+            "title": "Titanic",
+            "boxart": "http://www.imdb.com/title/tt0120338/?ref_=fn_al_tt_1",
+            "uri": "http://api.imdb.com/catalog/titles/movies/70111470",
+            "rating": 4.0,
+            "bookmark": []
+        }, {
+            "id": 654356453,
+            "title": "Avatar",
+            "boxart": "http://www.imdb.com/title/tt0499549/?ref_=tt_rec_tt",
+            "uri": "http://api.imdb.com/catalog/titles/movies/70111470",
+            "rating": 5.0,
+            "bookmark": [{
+                id: 432534,
+                time: 65876586
+            }]
+        }]
+    }, {
+        category: "Dramas",
+        movies: [{
+            "id": 70111470,
+            "title": "The Dark Knight",
+            "boxart": "http://www.imdb.com/title/tt0468569/?ref_=nv_sr_1",
+            "uri": "http://api.imdb.com/catalog/titles/movies/70111470",
+            "rating": 4.0,
+            "bookmark": []
+        }, {
+            "id": 675465,
+            "title": "Iron Man",
+            "boxart": "http://www.imdb.com/title/tt0371746/?ref_=nv_sr_1",
+            "uri": "http://api.imdb.com/catalog/titles/movies/70111470",
+            "rating": 5.0,
+            "bookmark": [{
+                id: 432534,
+                time: 65876586
+            }]
+        }]
+    }];
+
+
+  var idAndBoxArt = movieReleases
+                        .map(function(pairedMovie) {
+                            return pairedMovie.movies.map(function(movie){
+                                return {id: movie.id,
+                                        boxArt: movie.boxart
+                                    };
+                            });
+                    });
+   console.log(idAndBoxArt);
+   var allIdAndBoxArt = idAndBoxArt.concatAll();
+//Ques 6
+Array.prototype.concatAll = function concatAll() {
+    var outPut = [];
+    var self = this;
+    this.forEach(function(array) {
+        outPut.push(...array);
+        // here I am using ECMA Script 6 Feature
+    });
+    return outPut;
+};
+
+var multiDimArray = [[12, 15, 17], [2, 4, 6], [5, 3, 1]];
+var flatArray = multiDimArray.concatAll();
+console.log(flatArray);
+var movieReleases = [{
+    category: "New Releases",
+    movies: [{
+        "id": 65432445,
+        "title": "Titanic",
+        "boxarts": [{
+            width: 150,
+            height: 200,
+            url: "http://cdn-0.nflximg.com/images/2891/DieHard150.jpg"
+        }, {
+            width: 200,
+            height: 200,
+            url: "http://cdn-0.nflximg.com/images/2891/DieHard200.jpg"
+        }],
+        "url": "http://api.netflix.com/catalog/titles/movies/70111470",
+        "rating": 4.0,
+        "bookmark": []
+    }, {
+        "id": 654356453,
+        "title": "Avatar",
+        "boxarts": [{
+            width: 200,
+            height: 200,
+            url: "http://cdn-0.nflximg.com/images/2891/BadBoys200.jpg"
+        }, {
+            width: 150,
+            height: 200,
+            url: "http://cdn-0.nflximg.com/images/2891/BadBoys150.jpg"
+        }],
+        "url": "http://api.netflix.com/catalog/titles/movies/70111470",
+        "rating": 5.0,
+        "bookmark": [{
+            id: 432534,
+            time: 65876586
+        }]
+    }]
+}, {
+    category: "Dramas",
+    movies: [{
+        "id": 70111470,
+        "title": "The Dark Knight",
+        "boxarts": [{
+            width: 150,
+            height: 200,
+            url: "http://cdn-0.nflximg.com/images/2891/TheChamber150.jpg"
+        }, {
+            width: 200,
+            height: 200,
+            url: "http://cdn-0.nflximg.com/images/2891/TheChamber200.jpg"
+        }],
+        "url": "http://api.netflix.com/catalog/titles/movies/70111470",
+        "rating": 4.0,
+        "bookmark": []
+    }, {
+        "id": 675465,
+        "title": "Iron Man",
+        "boxarts": [{
+            width: 200,
+            height: 200,
+            url: "http://cdn-0.nflximg.com/images/2891/Fracture200.jpg"
+        }, {
+            width: 150,
+            height: 200,
+            url: "http://cdn-0.nflximg.com/images/2891/Fracture150.jpg"
+        }, {
+            width: 300,
+            height: 200,
+            url: "http://cdn-0.nflximg.com/images/2891/Fracture300.jpg"
+        }],
+        "url": "http://api.netflix.com/catalog/titles/movies/70111470",
+        "rating": 5.0,
+        "bookmark": [{
+            id: 432534,
+            time: 65876586
+        }]
+    }]
+}];
+console.log(movieReleases);
+var newConcatArray = movieReleases.map(function(pairedMovie) {
+    return pairedMovie.movies.map(function(movie) {
+        return movie.boxarts.filter(function(boxart) {
+            return boxart.width === 150;
+        }).map(function(boxart) {
+            return {
+                id: movie.id,
+                title: movie.title,
+                boxart: boxart.url
+            };
+        });
+    }).concatAll();
+}).concatAll();
+
+console.log(newConcatArray);
+
+//ques7
+
+var movieRelease = [{
+    "id": 70111470,
+    "title": "Warcraft",
+    "boxart": "http://cdn-0.nflximg.com/images/2891/Warcraft.jpg",
+    "uri": "http://api.netflix.com/catalog/titles/movies/70111470",
+    "rating": 4.0,
+    "bookmark": []
+}, {
+    "id": 654356453,
+    "title": "Central Intelligence",
+    "boxart": "http://cdn-0.nflximg.com/images/2891/CentralIntelligence.jpg",
+    "uri": "http://api.netflix.com/catalog/titles/movies/70111470",
+    "rating": 5.0,
+    "bookmark": [{
+        id: 432534,
+        time: 65876586
+    }]
+}, {
+    "id": 65432445,
+    "title": "Dangerous Beauty ",
+    "boxart": "http://cdn-0.nflximg.com/images/2891/DangerousBeauty .jpg",
+    "uri": "http://api.netflix.com/catalog/titles/movies/70111470",
+    "rating": 4.0,
+    "bookmark": []
+}, {
+    "id": 675465,
+    "title": "Hammett",
+    "boxart": "http://cdn-0.nflximg.com/images/2891/Hammett.jpg",
+    "uri": "http://api.netflix.com/catalog/titles/movies/70111470",
+    "rating": 5.0,
+    "bookmark": [{
+        id: 432534,
+        time: 65876586
+    }]
+}];
+
+// var idBox = [];
+// movieRelease.forEach(function(movie) {
+//     idBox.push({
+//         id: movie.id,
+//         boxart: movie.boxart
+//     });
+// });
+// console.log(idBox);
+
+//map implementation method
+// Array.prototype.map = function map(nf) {
+//     var that = this;
+//     var results = [];
+//     that.forEach(function(elem) {
+//         results.push(nf(elem));
+//     });
+//     return results;
+// }
+
+// var movieTreArray = movieRelease.map(function(movie) {
+//     return {
+//         id: movie.id,
+//         boxart: movie.boxart
+//     };
+// });
+// console.log(movieTreArray);
+
+
+// var ratingArray = [];
+// movieRelease.forEach(function(movie) {
+//     if (movie.rating === 4.0) {
+//         ratingArray.push(movie);
+//     } else {
+//         console.log('rating is not 4.0!');
+//     }
+// });
+// console.log(ratingArray);
+
+//filter
+// Array.prototype.filter = function filter(nf) {
+//     var that = this;
+//     var results = [];
+//     that.forEach(function(elem) {
+//         if (nf(elem)) {
+//             results.push(nf(elem));
+//         }
+//     });
+//     return results;
+// }
+// var filterArray = movieRelease.filter(function(movie) {
+//     return {
+//         rating: movie.rating === 4.0
+//     };
+// });
+// console.log(filterArray);
+
+//use map and filter
+var ratingArray = movieRelease.filter(function(movie) {
+    return movie.rating === 5.0;
+})
+.map(function(movie) {
+    return movie.id;
+});
+console.log(ratingArray);
+
+
+
+
+
+
+
+
+
+	
+</script>
+	
+</body>
+</html>
